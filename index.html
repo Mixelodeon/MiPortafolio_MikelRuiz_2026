@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Personal | Mikel Ruiz</title>
+    <meta name="description"
+        content="Portafolio profesional de desarrollador web y software mostrando habilidades y proyectos.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Boxicons -->
+    <!-- Biblioteca de iconos -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="navbar">
+            <a href="#" class="logo">Porta<span>folio</span></a>
+            <div class="menu-icon" id="menu-icon">
+                <i class='bx bx-menu'></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hola, soy</h3>
+            <!-- Aquí se escribe el texto mediante JS -->
+            <h1 class="typing-text"><span></span></h1>
+            <p>Desarrollador de aplicaciones web y Técnico en Sistemas Microinformáticos y Redes</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/mikel-ruiz-665b42212"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://github.com/Mixelodeon"><i class='bx bxl-github'></i></a>
+                <!-- <a href="#"><i class='bx bxl-twitter'></i></a> -->
+            </div>
+            <a href="#contact" class="btn">Contáctame</a>
+        </div>
+        <div class="home-img">
+            <div class="glowing-circle">
+                <span></span>
+                <span></span>
+                <div class="image">
+                    <!-- Remplazar a mi imagen -->
+                    <img src="https://placehold.co/400x400/1e293b/FFF?text=Foto+Perfil" alt="Foto de Perfil">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="heading">Sobre <span>Mí</span></h2>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="https://placehold.co/300x300/1e293b/FFF?text=IMG" alt="Sobre mi">
+            </div>
+            <div class="about-text">
+                <h3>¡Conóceme!</h3>
+                <p>Soy Mikel Ruiz tengo 22 años y soy Desarrollador de aplicaciones web y Técnico en Sistemas
+                    Microinformáticos y Redes. Me motiva enfrentarme a diferentes tipos de retos con el objetivo de
+                    sacar adelante diferentes proyectos innovadores y eficientes.</p>
+                <p>Me gusta la idea de trabajar en equipo, ya que de esta manera surgen diferentes lluvias de ideas y
+                    permite aprender nuevos métodos de resolver proyectos.</p>
+                <!-- <p>Estoy en constante aprendizaje para mantenerme al día con las últimas tendencias y tecnologías del
+                    mercado.</p> -->
+                <a href="#" class="btn">Conóceme Mejor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="heading">Mis <span>Habilidades</span></h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class='bx bxl-html5' style="color: #e34c26;"></i>
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-box">
+                <i class='bx bxl-css3' style="color: #264de4;"></i>
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-box">
+                <i class='bx bxl-javascript' style="color: #f7df1e;"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-box">
+                <i class='bx bxl-python' style="color: #3776ab;"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-box">
+                <i class='bx bxl-java' style="color: #007396;"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-box">
+                <i class='bx bxs-data' style="color: #00758f;"></i>
+                <h3>MySQL</h3>
+            </div>
+            <!-- <div class="skill-box">
+                <i class='bx bx-code-alt' style="color: #F29900;"></i>
+                <h3>XML</h3>
+            </div> -->
+            <div class="skill-box">
+                <i class='bx bxl-visual-studio' style="color: #512BD4;"></i>
+                <h3>.NET</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Placeholder) -->
+    <section class="projects" id="projects">
+        <h2 class="heading">Mis <span>Proyectos</span></h2>
+        <div class="projects-container">
+            <div class="project-box" data-name="TurboEngine">
+                <div class="project-layer">
+                    <h4>TurboEngine</h4>
+                    <p>Es una web para un taller de mecánica, en el que los clientes pueden gestionar sus citas y
+                        presupuestos.</p>
+                    <a href="https://github.com/Mixelodeon/TFG_MikelRuizMoreno_DAW2_TurboEngine"><i
+                            class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="project-box" data-name="Proyecto 2">
+                <div class="project-layer">
+                    <h4>Proyecto 2</h4>
+                    <p>Descripción breve del proyecto realizado.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="project-box" data-name="Proyecto 3">
+                <div class="project-layer">
+                    <h4>Proyecto 3</h4>
+                    <p>Descripción breve del proyecto realizado.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Contáctame <span>Ahora</span></h2>
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Nombre Completo" required>
+                <input type="email" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Número de Teléfono">
+                <input type="text" placeholder="Asunto">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Tu Mensaje" required></textarea>
+            <input type="submit" value="Enviar Mensaje" class="btn">
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2026 | Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Typed JS -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
