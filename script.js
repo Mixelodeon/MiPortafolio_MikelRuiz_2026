@@ -1,6 +1,9 @@
 // Esperamos que cargue todo el HTML con este evento
 window.addEventListener('DOMContentLoaded', () => {
 
+    console.log("Script cargado correctamente");
+    console.log("EmailJS cargado:", typeof emailjs !== 'undefined');
+
     // Control del menú hamburguesa
     // Seleccionamos el icono del menú (Visible en versión movil, las tres rayitas del menú desplegable)
     let menuIcon = document.querySelector('#menu-icon');
@@ -103,7 +106,15 @@ window.addEventListener('DOMContentLoaded', () => {
             const userMessage = document.getElementById('user-message');
             // Validación de los inputs
             if (userName.value === '' || userEmail.value === '' || userPhone.value === '' || userSubject.value === '' || userMessage.value === '') {
-                alert('Por favor, completa todos los campos');
+                // SweetAlert, avisos mas esteticos y sin detención de código
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos Vacios',
+                    text: 'Por favor, es necesario completar todos los campos del formulario',
+                    background: '#1e293b',
+                    color: '#e2e8f0',
+                    confirmButtonColor: '#38bdf8',
+                });
             } else {
                 // Utilizamos EmailJS para enviar el formulario al correo
                 // Cambiamos el texto del botón para indicar que se está enviando el formulario
@@ -114,14 +125,32 @@ window.addEventListener('DOMContentLoaded', () => {
                     .then(() => {
                         // Devolvemos el texto original del botón
                         submitBtn.value = 'Enviar';
-                        alert('El formulario se envio correctamente, gracias por contactarme :)');
+                        // Usamos SweetAlert para indicar el exito del envio
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Mensaje Enviado correctamente!',
+                            text: 'Gracias por contactarme, te responderé lo antes posible :)',
+                            background: '#1e293b',
+                            color: '#e2e8f0',
+                            confirmButtonColor: '#38bdf8',
+                            timer: 7000, // Cierra automaticamente el aviso en 4 segundos
+                            timerProgressBar: true, // Muestra una barra de progreso
+                        });
                         // Limpiamos el formulario
-                        form.reset();
+                        contactForm.reset();
                     })
                     .catch((e) => {
                         // Devolvemos el texto original del botón
                         submitBtn.value = 'Enviar';
-                        alert('Hubo un error al enviar el formulario, intentalo de nuevo');
+                        // SweetAlert para indicar el error
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Error al enviar el mensaje!',
+                            text: 'Algo salio mal, intentalo de nuevo porfavor :(',
+                            background: '#1e293b',
+                            color: '#e2e8f0',
+                            confirmButtonColor: '#38bdf8',
+                        });
                         console.log(e);
                     });
             }
