@@ -156,17 +156,18 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <h2 class="heading">Contáctame <span>Ahora</span></h2>
-        <form action="#">
+        <form action="#" id="contact-form">
             <div class="input-box">
-                <input type="text" placeholder="Nombre Completo" required>
-                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="text" name="user-name" id="user-name" placeholder="Nombre Completo" required>
+                <input type="email" name="user-email" id="user-email" placeholder="Correo Electrónico" required>
             </div>
             <div class="input-box">
-                <input type="number" placeholder="Número de Teléfono">
-                <input type="text" placeholder="Asunto">
+                <input type="number" name="user-phone" id="user-phone" placeholder="Número de Teléfono">
+                <input type="text" name="user-subject" id="user-subject" placeholder="Asunto">
             </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Tu Mensaje" required></textarea>
-            <input type="submit" value="Enviar Mensaje" class="btn">
+            <textarea name="user-message" id="user-message" cols="30" rows="10" placeholder="Tu Mensaje"
+                required></textarea>
+            <input id="submit-btn" type="submit" value="Enviar Mensaje" class="btn">
         </form>
     </section>
 
@@ -184,8 +185,14 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- Typed JS -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-    <script src="script.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("TU_PUBLIC_KEY_AQUI"); // <--- Pega aquí tu Public Key
+        })();
+    </script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
