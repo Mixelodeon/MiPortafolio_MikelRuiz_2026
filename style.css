@@ -476,6 +476,54 @@ span {
     resize: none;
 }
 
+/* Contenedor individual para input + error */
+.input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 49%;
+    /* Para que quepan dos por línea en el input-box */
+}
+
+/* El textarea necesita el 100% de ancho */
+form>.input-field {
+    width: 100%;
+}
+
+/* Ajustamos tus estilos originales a la nueva estructura */
+.contact form .input-box .input-field input,
+.contact form .input-field textarea {
+    width: 100%;
+    /* Ahora ocupan el 100% de su contenedor .input-field */
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border-radius: 0.8rem;
+    margin: 0.7rem 0;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+/* Mensajes de error */
+.error-message {
+    display: none;
+    color: #fb7185;
+    /* Rojo suave */
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.error-message.active {
+    display: block;
+}
+
+/* Borde rojo cuando el input es inválido */
+.input-invalid {
+    border-color: #fb7185 !important;
+}
+
 .contact form .btn {
     margin-top: 2rem;
     cursor: pointer;

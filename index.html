@@ -160,15 +160,30 @@
         <h2 class="heading">Contáctame <span>Ahora</span></h2>
         <form action="#" id="contact-form">
             <div class="input-box">
-                <input type="text" name="user-name" id="user-name" placeholder="Nombre Completo" required>
-                <input type="email" name="user-email" id="user-email" placeholder="Correo Electrónico" required>
+                <div class="input-field">
+                    <input type="text" name="user-name" id="user-name" placeholder="Nombre Completo" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-field">
+                    <input type="email" name="user-email" id="user-email" placeholder="Correo Electrónico" required>
+                    <span class="error-message"></span>
+                </div>
             </div>
             <div class="input-box">
-                <input type="number" name="user-phone" id="user-phone" placeholder="Número de Teléfono">
-                <input type="text" name="user-subject" id="user-subject" placeholder="Asunto">
+                <div class="input-field">
+                    <input type="number" name="user-phone" id="user-phone" placeholder="Número de Teléfono">
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="user-subject" id="user-subject" placeholder="Asunto">
+                    <span class="error-message"></span>
+                </div>
             </div>
-            <textarea name="user-message" id="user-message" cols="30" rows="10" placeholder="Tu Mensaje"
-                required></textarea>
+            <div class="input-field">
+                <textarea name="user-message" id="user-message" cols="30" rows="10" placeholder="Tu Mensaje"
+                    required></textarea>
+                <span class="error-message"></span>
+            </div>
             <input id="submit-btn" type="submit" value="Enviar Mensaje" class="btn">
         </form>
     </section>

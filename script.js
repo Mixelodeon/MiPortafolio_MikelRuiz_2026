@@ -1,15 +1,12 @@
 // Esperamos que cargue todo el HTML con este evento
 window.addEventListener('DOMContentLoaded', () => {
-
     console.log("Script cargado correctamente");
     console.log("EmailJS cargado:", typeof emailjs !== 'undefined');
-
     // Control del menú hamburguesa
     // Seleccionamos el icono del menú (Visible en versión movil, las tres rayitas del menú desplegable)
     let menuIcon = document.querySelector('#menu-icon');
     // Selecciona la lista de enlaces de navegación superioir (Índice)
     let navbar = document.querySelector('.nav-links');
-
     // Evento onclick, cuando se haga click en el icono del menú, se abrirá en menú desplegable de navegación (Versión móvil)
     menuIcon.onclick = () => {
         // Cambia el icono de "hamburguesa" a una "X" o viceversa
@@ -95,37 +92,118 @@ window.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-btn');
     // Verficamos que el formulario y el botón de envío existen
     if (contactForm && submitBtn) {
-        // Evento de escucha del formulario, se ejecutará cuando se envíe el formulario
+        // Capturamos los inputs del formulario
+        const userName = document.getElementById('user-name');
+        const userEmail = document.getElementById('user-email');
+        const userPhone = document.getElementById('user-phone');
+        const userSubject = document.getElementById('user-subject');
+        const userMessage = document.getElementById('user-message');
+        // Definimos las reglas de validación Regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+        // Funciones auxiliares para mostrar/limpiar errores
+        const limpiarError = (inputElement) => {
+            // Quitamos la clase 'input-invalid' del elemento
+            inputElement.classList.remove('input-invalid');
+            // Buscamos el elemento con la clase 'error-message' dentro del elemento padre
+            const errorSpan = inputElement.parentElement.querySelector('.error-message');
+            // Si se encuentra el elemento, quitamos la clase 'active' y vaciamos el texto
+            if (errorSpan) {
+                errorSpan.innerText = '';
+                errorSpan.classList.remove('active');
+            }
+        };
+        // Definimos la función para mostrar errores, que recibe de parámetro el elemento y el mensaje de error
+        const mostrarError = (inputElement, errorMessage) => {
+            // Añadimos la clase 'input-invalid' al elemento
+            inputElement.classList.add('input-invalid');
+            // Buscamos el elemento con la clase 'error-message' dentro del elemento padre
+            const errorSpan = inputElement.parentElement.querySelector('.error-message');
+            // Si se encuentra el elemento, añadimos la clase 'active' y mostramos el mensaje de error
+            if (errorSpan) {
+                // Añadimos el mensaje de error al elemento
+                errorSpan.innerText = errorMessage;
+                // Añadimos la clase 'active' al elemento
+                errorSpan.classList.add('active');
+            }
+        };
+
+        // Funciones de validación: Se utilizan las funciones flecha (arrow functions) para validar cada campo del formulario
+        // Función para validar el nombre, debe tener al menos 3 caracteres
+        const validarNombre = () => {
+            if (userName.value.trim().length < 3) {
+                mostrarError(userName, 'El nombre debe tener al menos 3 caracteres');
+                return false;
+            }
+            limpiarError(userName);
+            return true;
+        };
+        // Función para validar el correo electrónico, debe tener un formato válido
+        const validarCorreo = () => {
+            // Usamos la expresión regular para validar el correo electrónico en la condición
+            if (!emailRegex.test(userEmail.value)) {
+                mostrarError(userEmail, 'Introduce un correo electrónico valido');
+                return false;
+            }
+            limpiarError(userEmail);
+            return true;
+        };
+        // Función para validar el teléfono, debe tener un formato válido
+        const validarTelefono = () => {
+            if (userPhone.value.trim() !== "" && !phoneRegex.test(userPhone.value)) {
+                mostrarError(userPhone, 'El formato del teléfono no es válido');
+                return false;
+            }
+            limpiarError(userPhone);
+            return true;
+        };
+        // Función para validar el asunto, debe tener al menos 4 caracteres
+        const validarAsunto = () => {
+            if (userSubject.value.trim().length < 4) {
+                mostrarError(userSubject, 'El asunto debe tener al menos 4 caracteres');
+                return false;
+            }
+            limpiarError(userSubject);
+            return true;
+        };
+        // Función para validar el mensaje, debe tener al menos 10 caracteres
+        const validarMensaje = () => {
+            if (userMessage.value.trim().length < 10) {
+                mostrarError(userMessage, 'El mensaje debe tener al menos 10 caracteres');
+                return false;
+            }
+            limpiarError(userMessage);
+            return true;
+        };
+
+        // Asignación de eventos BLUR (validación en tiempo real) para cada campo del formulario
+        userName.addEventListener('blur', validarNombre);
+        userEmail.addEventListener('blur', validarCorreo);
+        userPhone.addEventListener('blur', validarTelefono);
+        userSubject.addEventListener('blur', validarAsunto);
+        userMessage.addEventListener('blur', validarMensaje);
+
+        // Evento para el envío del formulario
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Capturamos los inputs del formulario
-            const userName = document.getElementById('user-name');
-            const userEmail = document.getElementById('user-email');
-            const userPhone = document.getElementById('user-phone');
-            const userSubject = document.getElementById('user-subject');
-            const userMessage = document.getElementById('user-message');
-            // Validación de los inputs
-            if (userName.value === '' || userEmail.value === '' || userPhone.value === '' || userSubject.value === '' || userMessage.value === '') {
-                // SweetAlert, avisos mas esteticos y sin detención de código
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Campos Vacios',
-                    text: 'Por favor, es necesario completar todos los campos del formulario',
-                    background: '#1e293b',
-                    color: '#e2e8f0',
-                    confirmButtonColor: '#38bdf8',
-                });
-            } else {
-                // Utilizamos EmailJS para enviar el formulario al correo
-                // Cambiamos el texto del botón para indicar que se está enviando el formulario
+            // Booleano para comprobar si el formulario es válido para ser enviado
+            let esValido = true;
+            // Ejecutamos todas las validaciones
+            if (!validarNombre()) esValido = false;
+            if (!validarCorreo()) esValido = false;
+            if (!validarTelefono()) esValido = false;
+            if (!validarAsunto()) esValido = false;
+            if (!validarMensaje()) esValido = false;
+            // Si el formulario es válido, enviamos el email
+            if (esValido) {
+                // Si todo está correcto, enviamos el email
                 submitBtn.value = 'Enviando...';
-                // Enviamos el formulario
-                // Parametros: service_id, template_id, contact_form
+                // Usamos EmailJS para enviar el formulario, pasamos como parámetros el ID del servicio, el ID de la plantilla y el ID del formulario
+                // Estos parametros los obtenemos de la pagina de EmailJS
                 emailjs.sendForm('service_5g379aa', 'template_f8rklwp', '#contact-form')
                     .then(() => {
-                        // Devolvemos el texto original del botón
                         submitBtn.value = 'Enviar';
-                        // Usamos SweetAlert para indicar el exito del envio
+                        // Creamos alert personalizados con SweetAlert
                         Swal.fire({
                             icon: 'success',
                             title: '¡Mensaje Enviado correctamente!',
@@ -133,25 +211,22 @@ window.addEventListener('DOMContentLoaded', () => {
                             background: '#1e293b',
                             color: '#e2e8f0',
                             confirmButtonColor: '#38bdf8',
-                            timer: 7000, // Cierra automaticamente el aviso en 4 segundos
-                            timerProgressBar: true, // Muestra una barra de progreso
+                            timer: 7000,
+                            timerProgressBar: true,
                         });
-                        // Limpiamos el formulario
                         contactForm.reset();
                     })
-                    .catch((e) => {
-                        // Devolvemos el texto original del botón
+                    .catch((err) => {
                         submitBtn.value = 'Enviar';
-                        // SweetAlert para indicar el error
                         Swal.fire({
                             icon: 'error',
                             title: '¡Error al enviar el mensaje!',
-                            text: 'Algo salio mal, intentalo de nuevo porfavor :(',
+                            text: 'Algo salió mal, inténtalo de nuevo por favor :(',
                             background: '#1e293b',
                             color: '#e2e8f0',
                             confirmButtonColor: '#38bdf8',
                         });
-                        console.log(e);
+                        console.error('Error al enviar email:', err);
                     });
             }
         });
